@@ -1,16 +1,28 @@
-# React + Vite
+Lab 1.2 — React Project Setup & Counter
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+About
 
-Currently, two official plugins are available:
+В этой лабораторной работе был создан новый React-проект с использованием Vite.
+Реализован минимальный компонент Counter, который демонстрирует работу состояния (useState) и автоматический re-render.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Tools Used
+React 18+ Vite Node.js npm
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Project Setup
 
-## Expanding the ESLint configuration
+Проект был создан с помощью команды:
+npm create vite@latest lab1.2 -- --template react
+cd lab1.2
+npm install
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Компонент Counter:
+Отображает число (начальное значение 0)
+Имеет кнопки Increment и Decrement
+Использует useState для хранения состояния
+Обновляет значение при нажатии кнопок
+Работает без прямой манипуляции DO
+
+Проверено на:
+node -v
+npm -v
