@@ -1,0 +1,91 @@
+body {
+  margin: 0;
+  font-family: 'Times New Roman', Times, serif;
+  background: #0f172a;
+}
+
+.page {
+  min-height: 100vh;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  background: #0f172a;
+  padding: 20px;
+  width: 350%;
+}
+
+.card {
+  width: 550px;
+  background: #1e293b;
+  color: white;
+  padding: 28px;
+  border-radius: 14px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45)
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 45px;
+}
+
+.subtitle {
+  margin: 0 0 20px;
+  font-size: 20px;
+  color: #cbd5e1;
+  line-height: 1.4;
+}
+
+.count {
+  font-size: 54px;
+  font-weight: bold;
+  margin: 10px 0 20px;
+  padding: 12px 0;
+  background: rgba(255,255,255,0.06);
+  border-radius: 12px;
+}
+
+.buttons{
+  display:flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.btn {
+  border: none;
+  gap: 12px;
+  justify-content: center;
+}
+
+.btn{ 
+  border: none;
+  cursor: pointer;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  background: #2563eb;
+  color: white;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.btnGray {
+  background: #475569;
+}
+
+.btnGray:hover {
+  background: #334155;
+}
+
+.hint {
+  margin-top: 18px;
+  font-size: 18px;
+  color: #94a3b8;
+}
+
+

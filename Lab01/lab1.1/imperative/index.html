@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lab 1.1 - Imperative (jQuery)</title>
+
+  <!-- Optional: nice font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg1:#0f172a;
+      --bg2:#0b1220;
+      --card:#0b1220cc;
+      --border:#ffffff1a;
+      --text:#e5e7eb;
+      --muted:#a3a3a3;
+      --accent:#7c3aed;
+      --accent2:#22c55e;
+      --shadow: 0 20px 50px rgba(0,0,0,.45);
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(900px 500px at 10% 10%, rgba(124,58,237,.35), transparent 60%),
+        radial-gradient(900px 500px at 90% 30%, rgba(34,197,94,.22), transparent 60%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 28px;
+    }
+
+    .wrap{
+      width: min(860px, 100%);
+      display:grid;
+      gap: 14px;
+    }
+
+    .topbar{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:12px;
+    }
+
+    .title{
+      margin:0;
+      font-size: clamp(22px, 2.4vw, 30px);
+      letter-spacing: -0.02em;
+    }
+    .subtitle{
+      margin:6px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .badge{
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      color: #dbeafe;
+      font-size: 12px;
+      display:flex;
+      gap:8px;
+      align-items:center;
+      white-space:nowrap;
+    }
+    .dot{
+      width:8px; height:8px; border-radius:50%;
+      background: var(--accent2);
+      box-shadow: 0 0 0 6px rgba(34,197,94,.12);
+    }
+
+    .card{
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .card-header{
+      padding: 18px 18px 0;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+
+    .pill{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      color: #fde68a;
+      font-size: 12px;
+    }
+
+    .content{
+      padding: 18px;
+      display:grid;
+      gap: 14px;
+    }
+
+    .btn{
+      border: none;
+      cursor:pointer;
+      user-select:none;
+      padding: 12px 14px;
+      border-radius: 12px;
+      color: white;
+      font-weight: 700;
+      letter-spacing: .01em;
+      background: linear-gradient(90deg, var(--accent), #2563eb);
+      box-shadow: 0 10px 25px rgba(124,58,237,.22);
+      transition: transform .12s ease, filter .12s ease, box-shadow .12s ease;
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      justify-content:center;
+      width: fit-content;
+    }
+
+    .btn:hover{
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+      box-shadow: 0 14px 35px rgba(124,58,237,.28);
+    }
+    .btn:active{
+      transform: translateY(0px) scale(.99);
+    }
+
+    .hint{
+      color: var(--muted);
+      font-size: 13px;
+      margin: 0;
+    }
+
+    
+    .box{
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      border-radius: 14px;
+      padding: 16px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .box::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: radial-gradient(500px 120px at 10% 20%, rgba(124,58,237,.35), transparent 55%),radial-gradient(500px 120px at 90% 80%, rgba(34,197,94,.22), transparent 55%);
+      opacity:.6;
+      pointer-events:none;
+    }
+
+    #text{
+      margin:0;
+      position:relative;
+      line-height:1.6;
+      font-size: 15px;
+      color: #e6e8ee;
+      transition: background-color .2s ease, box-shadow .2s ease, transform .2s ease;
+      padding: 10px 12px;
+      border-radius: 12px;
+    }
+
+   
+    .highlight{
+      background: rgba(253, 224, 71, .22);
+      box-shadow: 0 0 0 1px rgba(253,224,71,.35), 0 10px 30px rgba(253,224,71,.12);
+      transform: translateY(-1px);
+    }
+
+    .footer{
+      padding: 14px 18px 18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    code{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      color:#cbd5e1;
+    }
+  </style>
+
+  <!-- jQuery CDN (Task requirement) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div>
+        <h1 class="title">Lab 1.1 — Imperative UI (jQuery)</h1>
+        <p class="subtitle">
+          Button toggles the <code>.highlight</code> class on the paragraph (add/remove) on each click.
+        </p>
+      </div>
+      <div class="badge"><span class="dot"></span> jQuery CDN connected</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="pill">Task 1 • Imperative Implementation</span>
+      </div>
+
+      <div class="content">
+        <button class="btn" id="toggleBtn" type="button">
+           Toggle Highlight
+        </button>
+
+        <p class="hint">Click the button to add/remove the class. This is manual DOM manipulation (imperative).</p>
+
+        <div class="box">
+          <p id="text">
+            Кнопка басканда текст жанады
+          </p>
+        </div>
+      </div>
+
+      <div class="footer">
+        <span>Requirement: use <code>toggleClass("highlight")</code> or add/remove.</span>
+        <span>Lab 1.1 • Week 1</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      $("#toggleBtn").on("click", function () {
+        $("#text").toggleClass("highlight");
+      });
+    });
+  </script>
+</body>
+</html>
