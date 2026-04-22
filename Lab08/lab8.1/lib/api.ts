@@ -3,7 +3,7 @@ import { Post, Author } from "../types";
 const authors: Author[] = [
   { 
     id: "1", 
-    name: "Altynai Ybraikhan", 
+    name: "Diana Zakariya", 
     bio: "Student & Developer", 
     avatar: "https://ui-avatars.com/api/?name=Altynai+Y&background=0D8ABC&color=fff" 
   },
